@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>To-do-list</title>
+     <link rel="icon" href="shuzi.png">
+     <style>
+          body{
+               background-color: rgb(3, 27, 27);
+          }
+          .container{
+               width:50%;
+               height: 550px;
+               border: 1px solid grey;
+               background-color: white;
+               border-radius:1px ;
+               margin-left: 350px;
+               margin-top: 45px;
+              
+          }
+          input{
+               width: 65%;
+               min-height: 40px;
+               border: 1px solid gray;
+               border-radius:1px ;
+               margin-top: 10px;
+               margin-left: 10px;
+               
+          }
+          input::placeholder{
+               font-size: 18px;
+               padding-left: 5px;
+               color:black;
+               border-radius: 1px
+              
+          }
+          .modal-container{
+               width: auto;
+               height: auto;
+               
+          }
+          
+          button{
+               width: 15%;
+               height: 40px;
+               border-radius:1px;
+               border: 1px solid black;
+               font-size: 18px;
+               margin-left: 10px;
+               background-color:rgb(226, 43, 128);
+               color:white;
+               cursor: pointer;
+               font-family: sans-serif;
+          }
+          #demo3{
+               font-size: 24px;
+               color:black;
+               margin-top: 5px;
+             
+             
+          }
+          
+         
+         input[type="search"]{
+          font-size: 18px;
+         }
+         
+     .boxtype{
+               width:3%;
+               height: 6px;
+               margin-top: 10px;
+               margin-left:10px;
+         
+          
+          } 
+          
+        .items {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px;
+            font-size: 29px;
+            margin-bottom: 5px;
+        }
+        #demo3:hover{
+          background-color: lightgray;
+        }
+        .remove-btn {
+            background-color: red;
+            color: white;
+            border-radius: 1px ;
+            border: 1px solid black;
+            cursor: pointer;
+            padding-bottom:10px;
+            border-radius: 3px;
+            margin-left: 500px;
+          
+        }
+    
+       
+       
+
+     </style>
+</head>
+<body>
+     <div class="container">
+          <input type="search" placeholder="Search.." id="demo1" class="m1"><button id="demo2">Send</button><button id="demo4">Clear</button>
+          <div id="showContainer">
+               <div class="modal-container" id="demo3"></div>
+               
+               
+          </div>
+          
+         
+     </div>
+     <script>
+       document.getElementById('demo2').addEventListener('click', () => {
+            let val1 = document.getElementById('demo1').value;
+            let val2 = document.getElementById('demo3');
+
+            if (val1 === '') {
+                alert("Please enter the text.");
+            } else {
+                let items = document.createElement('div');
+                items.className = 'items hover-effect';
+
+                let box = document.createElement('input');
+                box.type = 'checkbox';
+                box.className = 'boxtype';
+
+                let text = document.createElement('span');
+                text.innerText = val1;
+
+                let removeBtn = document.createElement('button');
+                removeBtn.innerText = 'X';
+                removeBtn.className = 'remove-btn';
+                removeBtn.addEventListener('click', () => {
+                    val2.removeChild(items);
+                    val2.removeChild(hr); // Remove the associated hr as well
+                });
+
+                items.appendChild(box);
+                items.appendChild(text);
+                items.appendChild(removeBtn);
+                val2.appendChild(items);
+
+                let hr = document.createElement('hr');
+                val2.appendChild(hr);
+
+                document.getElementById('demo1').value = '';
+
+                box.addEventListener('change', () => {
+                    text.style.textDecoration = box.checked ? 'line-through' : 'none';
+                });
+
+                val2.style.display = 'block';
+            }
+        });
+
+        document.getElementById('showContainer').addEventListener('click', () => {
+            document.getElementById('demo3').style.display = 'block';
+        });
+
+        document.getElementById('demo4').addEventListener('click', () => {
+            document.getElementById('demo3').innerHTML = '';
+        });
+     </script>
+     
+     
+</body>
+</html>
